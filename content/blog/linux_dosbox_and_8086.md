@@ -62,3 +62,5 @@ dosbox
 mount /path/to/masm
 C:
 ```
+
+现在就可以在 dosbox 中使用 masm 啦
