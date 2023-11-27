@@ -100,9 +100,9 @@ foothr = true                                        # show or hide horizontal r
 
 title_separator = "|"                          # Separator between title and title_addition, set as |, -, _, etc
 title_addition = "Blog"                        # a default value for title addition
-author = "Yutong Chen"                         # Put Your Name here
+author = "BLindinlights"                       # Put Your Name here
 keywords = ""                                  # used for the primary site index                        # Used as default image for OpenGraph/Twitter if page specific image is undefined.
-twitter_meta = "BLindinlights03"               # for SEO: twitter:site and twitter:creator
+twitter_meta = ""                              # for SEO: twitter:site and twitter:creator
 google = "Your Google Site verification code."
 bing = "Your Bing Site verification code."
 seo = true                                     # enable or disable seo-related meta tags: opengraph, facebook, twitter
@@ -121,7 +121,7 @@ mail = "chenyutong007@gmail.com"
 # buymeacoffee = "your-user-name"
 # kofi = "your-user-name"
 # discord = "your-discord"          # Everything after https://discord.com/   eg: invite/my-server  *or*  servers/my-server-id
-# twitter = "your-user-name"
+twitter = "BLindinlights03"
 # facebook = "your-user-name"
 # linkedin = "your-user-name"
 # gitlab = "your-user-name"
@@ -145,8 +145,8 @@ github = "Blindinlights-cc"
 ###   hyvor talk
 ###############################################################################
 
-#comments.hyvor = "9366" # hyvor website id, comment out to disable.
-#comments.hyvorcolor = "os" # set the color property for hyvor
+comments.hyvor = "9366"    # hyvor website id, comment out to disable.
+comments.hyvorcolor = "os" # set the color property for hyvor
 
 
 ###############################################################################
