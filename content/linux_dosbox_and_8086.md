@@ -1,9 +1,9 @@
 +++
-title = "在linux中使用dosbox搭建8086汇编环境"
+title = "在linux中写masm"
 date = 2023-11-26
-description ="在linux中使用dosbox搭建8086汇编环境,以及masm.exe和debug.exe的使用"
+description ="在linux中使用dosbox搭建8086汇编环境,以及masm.exe的使用"
 [taxonomies]
-tags = ["Linux"]
+tags = ["Linux","masm","dosbox"]
 [extra]
 toc = true
 +++
