@@ -145,9 +145,6 @@ github = "Blindinlights-cc"
 ###   hyvor talk
 ###############################################################################
 
-comments.hyvor = "9366"    # hyvor website id, comment out to disable.
-comments.hyvorcolor = "os" # set the color property for hyvor
-
 
 ###############################################################################
 ### Resource Files
@@ -253,14 +250,14 @@ icon_top = "svgs svgh angu"   # Back to Top Button.
 #icon_read = "svgs fa-solid fa-glasses" # displayed in metadata on index and below title on page.
 #icon_date = "svgs fa-solid fa-calendar" # displayed in metadata on index and below title on page.
 #icon_info = "svgs fa-solid fa-circle-info" # displayed in metadata on index and below title on page for categories/tags
-icon_author = "svgs fa-solid fa-pen-fancy" # displayed in metadata on index and below title on page.
+#icon_author = "svgs fa-solid fa-pen-fancy" # displayed in metadata on index and below title on page.
 
 ### Uncomment below line to load fontawesome, eg: <i class="fa-solid fa-heart"></i>
-#fontawesome = "https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"
-#icon_read = "svgs fa-solid fa-glasses" # displayed in metadata on index and below title on page.
-#icon_date = "svgs fa-solid fa-calendar" # displayed in metadata on index and below title on page.
-#icon_info = "svgs fa-solid fa-circle-info" # displayed in metadata on index and below title on page for categories/tags
-#icon_author = "svgs fa-solid fa-pen-fancy" # displayed in metadata on index and below title on page.
+fontawesome = "https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"
+icon_read = "svgs fa-solid fa-glasses"                                                           # displayed in metadata on index and below title on page.
+icon_date = "svgs fa-solid fa-calendar"                                                          # displayed in metadata on index and below title on page.
+icon_info = "svgs fa-solid fa-circle-info"                                                       # displayed in metadata on index and below title on page for categories/tags
+icon_author = "svgs fa-solid fa-pen-fancy"                                                       # displayed in metadata on index and below title on page.
 
 
 ###############################################################################
