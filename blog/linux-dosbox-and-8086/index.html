@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+    <head>
+        <meta charset="utf-8">
+
+        
+        
+
+        <link rel="stylesheet" href="/css/style.css"/>
+        <link rel="stylesheet" href="/line-awesome/css/line-awesome.min.css"/>
+        <script src="/js/main.js" defer></script>
+        
+    <title>在linux中使用dosbox搭建8086汇编环境 | BlindinLights</title>
+
+    </head>
+
+    <body class="bg-white dark:bg-slate-900 transition ease-in-out">
+        <section>
+            
+    
+<div class="sticky top-0 bg-slate-100 dark:bg-slate-800">
+    <div class="container mx-auto flex place-content-between
+        py-16 lg:py-8 font-sans text-6xl lg:text-2xl text-slate-900
+        dark:text-slate-300">
+        <div class="flex">
+            
+            
+            
+            
+            <a class="m-0 p-0 text-slate-900 hover:text-slate-700
+                            dark:text-slate-300 dark:hover:text-slate-200" href="&#x2F;blog&#x2F;">
+                /blog
+            </a>
+            
+            
+            
+            
+            
+            
+        </div>
+        <div class="flex gap-4">
+            <div id="back-to-top" class="hidden cursor-pointer">
+                <i class="las la-level-up-alt"></i>
+            </div>
+            <a href="/"><i class="las la-home"></i></a>
+            <div id="darkmode-toggle" class="cursor-pointer">
+                <div class="hidden dark:inline">
+                    <i class="las la-sun"></i>
+                </div>
+                <div class="inline dark:hidden">
+                    <i class="las la-moon"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="container mb-16">
+        <div class="mt-4 font-serif text-slate-600 dark:text-slate-500 text-4xl lg:text-base">
+            2023-11-26
+        </div>
+        <h1 class="w-full mt-4 mb-8 font-serif text-8xl lg:text-4xl text-slate-900 dark:text-slate-300">
+            在linux中使用dosbox搭建8086汇编环境
+        </h1>
+        <div class="w-100 border-t mb-8 border-slate-300 dark:border-slate-700"></div>
+        <div class="prose-boring">
+            <p>最近在学 8086 汇编，还要用它写作业（主要是 masm），所以要自己的电脑上搞一个能写 masm 的环境。查了一会资料，
+勉强可以用了，记录一下</p>
+<h2 id="xie-hui-bian-yao-yong-dao-de">写汇编要用到的</h2>
+<ul>
+<li>汇编器 masm.exe</li>
+<li>连接器 linker.exe</li>
+<li>调试器 debug.exe</li>
+<li>以上三个都不能在 linux 下直接运行，所以需要一个虚拟环境，dosbox</li>
+</ul>
+<h2 id="an-zhuang">安装</h2>
+<p><strong>安装 Dosbox</strong></p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#65737e;">#Arch linux
+</span><span style="color:#bf616a;">sudo</span><span> pacman</span><span style="color:#bf616a;"> -S</span><span> dosbox
+</span></code></pre>
+<p><strong>安装汇编器三件套</strong>
+找了半天都找不到资源，</p>
+<h2 id="qi-dong-dosbox">启动 dosbox</h2>
+<p>直接在命令行输入 dosbox 即可启动</p>
+<p>进入后要将 c 盘挂载在一个目录下</p>
+<pre data-lang="cmd" style="background-color:#2b303b;color:#c0c5ce;" class="language-cmd "><code class="language-cmd" data-lang="cmd"><span>mount c /</span><span style="color:#b48ead;">path</span><span>/to/masm
+</span><span>C:
+</span></code></pre>
+<p>然后就可以汇编连接开写了</p>
+<p>另外每次关闭 dosbox 在重新打开,都要 mount,好在可以在配置文件中设置</p>
+<p>配置文件的位置就在启动 dosbox 的说明中</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>dosbox
+</span><span>    DOSBox version 0.74-3
+</span><span>    Copyright 2002-2019 DOSBox Team, published under GNU GPL.
+</span><span>    ---
+</span><span>    CONFIG:Loading primary settings from config file /PATH/TO/DOSBOX/CONF
+</span><span>    ALSA:Can&#39;t subscribe to MIDI port (65:0) nor (17:0)
+</span><span>    MIDI:Opened device:none
+</span><span>
+</span></code></pre>
+<p>把 mount 的命令添加进去</p>
+<pre data-lang="conf" style="background-color:#2b303b;color:#c0c5ce;" class="language-conf "><code class="language-conf" data-lang="conf"><span>...
+</span><span style="color:#b48ead;">[autoexec]
+</span><span style="color:#bf616a;">mount </span><span>/path/to/masm
+</span><span>C:
+</span></code></pre>
+<p>现在就可以在 dosbox 中使用 masm 啦</p>
+
+        </div>
+    </div>
+
+        </section>
+    </body>
+</html>
