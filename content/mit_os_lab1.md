@@ -1,6 +1,6 @@
 +++
 title="MIT 6.S081 Lab 1: Xv6 and Unix utilities"
-date=2024-2-7
+date=2024-02-07
 description="MIT 6.S081 课程 lab1 记录"
 [taxonomies]
 tags = ["MIT6.S081","OS","操作系统"]
