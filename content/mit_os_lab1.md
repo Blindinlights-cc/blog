@@ -108,14 +108,16 @@ int main()
 
 当前进程读取管道，第一个数（cur）即为素数，一直从管道读取并将不是该数(cur)倍数的数字写进管道，传给下一个进程
 
-[Bell Labs and CSP Threads]: https://swtch.com/~rsc/thread/
-
 实现的思路是，最新的进程 fork()的返回值永远是 0,只要处理好初始进程，后续进程的逻辑直接按照上文实现，当没有数可读时，直接退出。
+
+注意要关闭所有的管道写端，这样子进程的`read`就不会一直等待,我在刚开始的时候以为只用在父进程关闭写就可以，但忘记了这个写端也被子进程持有，结过程序一直阻塞进行不下去 (怀念 raii,第一次体会到不及时释放资源带来的问题，感谢 cpp)
+
+[Bell Labs and CSP Threads]: https://swtch.com/~rsc/thread/
 
 ```c
 #include "kernel/types.h"
 #include "user/user.h"
-
+static int lock = 0;
 int main()
 {
     int p0[2] = {0};
@@ -126,44 +128,47 @@ int main()
     }
     close(p0[1]);
     int readp = p0[0];
+    int writep = 0;
+    int cur = 0;
     while (1)
     {
-        int ret = fork();//除初始进程外，每个进程都会fork()两次，第一次由父进程fork()出来
-                        // 此时子进程p 的ret值为0,执行素数判断程序（读，写）
-                        // 之后p再次fork后ret值不再为0,直接等待（wait）p的子进程结束，
-                        // 然后跳出循环，p退出
-        if (ret == 0)
+
+        int pid = getpid();
+        int n = read(readp, &cur, sizeof(int));
+        if (n == 0)
         {
-            int cur = 2;
-            int np[2] = {0};
-            int flag = 0;
-            pipe(np);
-            int writep = np[1];
-            int n = read(readp, &cur, sizeof(int));
-            if (n == 0)
-            {
-                exit(0);
-            }
-            printf("prime %d\n", cur);
-            int num = 0;
-            while (read(readp, &num, sizeof(int)))
-            {
-                if (num % cur != 0)
-                {
-                    write(writep, &num, sizeof(int));
-                }
-                flag++;
-            }
-            close(writep);
             close(readp);
-            readp = np[0];
-        }
-        else
-        {
-            int cp;
-            wait(&cp);
             exit(0);
         }
+        int np[2] = {0};
+        pipe(np);
+
+        writep = np[1];
+        int ret = fork();//在这里fork，该管道的w端也被复制了
+        if (ret == 0)
+        {
+            close(np[1]); // 这里要关闭多余的管道
+            close(readp);
+            readp = np[0];
+            continue;  // 子进程进入下一个循环
+        }
+        close(np[0]);
+
+        printf("prime %d\n", cur);
+        int num = 0;
+        while (read(readp, &num, sizeof(int)))
+        {
+            if (num % cur != 0)
+            {
+
+                write(writep, &num, sizeof(int));
+            }
+        }
+        close(writep);//父进程关闭写
+        close(readp);
+        int child;
+        wait(child);
+        exit(0);
     }
 }
 
