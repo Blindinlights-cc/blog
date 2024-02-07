@@ -102,7 +102,7 @@ int main()
 
 这个有点复杂，首先先了解一下多进程求素数的原理
 
-![alt text](images/priems.png)
+![alt text](./images/primes.png)
 每个进程有一个读管道（readp）读取上个进程（左邻居）传送过来的数字，一个写管道（writep）将数字发送给下一个进程（右邻居）。 具体参见[Bell Labs and CSP Threads]
 
 当前进程读取管道，第一个数（cur）即为素数，一直从管道读取并将不是该数(cur)倍数的数字写进管道，传给下一个进程
